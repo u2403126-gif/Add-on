@@ -1,0 +1,218 @@
+/* Cute and Kawaii Design */
+:root {
+    --primary-color: #FFA5D8;    /* Soft Pink */
+    --secondary-color: #A5FFD6;  /* Mint Green */
+    --text-color: #8B7AA2;      /* Soft Purple */
+    --background-color: #FFF5FA; /* Light Pink Background */
+    --card-background: #ffffff;
+    --shadow-color: rgba(255, 165, 216, 0.2);
+    --check-color: #B6E6BD;     /* Mint Green for completed tasks */
+    --delete-color: #FFB7B2;    /* Soft Coral for delete button */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.todo-card {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 25px;
+    box-shadow: 0 8px 20px var(--shadow-color);
+    border: 3px solid var(--primary-color);
+    position: relative;
+}
+
+.todo-card::before {
+    content: '✿';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card-background);
+    color: var(--primary-color);
+    padding: 0 10px;
+    font-size: 24px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+button {
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #ff5252;
+    transform: translateY(-2px);
+}
+
+.tasks-container {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    background-color: #FFF;
+    border-radius: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid var(--secondary-color);
+    position: relative;
+}
+
+.task-item::before {
+    content: '•ᴗ•';
+    position: absolute;
+    left: -25px;
+    color: var(--primary-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.task-item:hover::before {
+    opacity: 1;
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.task-text {
+    flex: 1;
+}
+
+.task-date {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.completed .task-text {
+    text-decoration: line-through;
+    color: #888;
+}
+
+input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--check-color);
+    border-color: var(--check-color);
+}
+
+input[type="checkbox"]:checked::after {
+    content: '♥';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+}
+
+.delete-btn {
+    background-color: transparent;
+    color: var(--delete-color);
+    padding: 0.5rem;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.delete-btn:hover {
+    background-color: var(--delete-color);
+    color: white;
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Custom scrollbar */
+.tasks-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tasks-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.tasks-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.tasks-container::-webkit-scrollbar-thumb:hover {
+    background: #ff5252;
+}

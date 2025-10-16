@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Todo List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="todo-card">
+            <h1>Todo List</h1>
+            <form id="todo-form">
+                <div class="input-group">
+                    <input type="text" id="task-input" placeholder="Add a new task..." required>
+                    <button type="submit">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </form>
+            <div class="tasks-container">
+                <ul id="tasks-list">
+                    {% for task in tasks %}
+                    <li class="task-item {% if task.completed %}completed{% endif %}" data-id="{{ task.id }}">
+                        <div class="task-content">
+                            <input type="checkbox" {% if task.completed %}checked{% endif %}>
+                            <span class="task-text">{{ task.title }}</span>
+                            <span class="task-date">{{ task.created_at }}</span>
+                        </div>
+                        <button class="delete-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
